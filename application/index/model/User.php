@@ -53,6 +53,17 @@ class User extends Model
         $status = [-1 => '删除', 0 => '禁用', 1 => '正常', 2 => '待审核'];
         return $status[$value];
     }
+    //查询器(筛选数据用)
+    //scope + 查询范围名称
+    protected function scopeEmail($query,$emial=''){
+        $query->where('email', $emial);
+    }
+    //全局查询器
+        //只要附加了scope 查询,那么就会使用此全局查询进行筛选
+//    protected static function base($query){
+//        // 查询状态为1的数据
+//        $query->where('status',1);
+//    }
 
     //读取器
         //get + 属性名的驼峰命名+ Attr ---------该方法会在读取birthday属性值的时候自动执行。

@@ -40,13 +40,7 @@ class UserController {
         }
     }
     //查询
-/*    public function read($id=''){
-        //如果你是在模型的内部获取数据，请不要使用$this->nickname，而应该使用$this->getAttr('nickname')方式替代。
-        $user = User::get($id);
-        echo $user ;
-    }*/
     public function read($id=''){
-
         $user  =  User::get($id);
         //User::get  getBy + 键名 可以按需筛选;
         //另一种写法 User::get(['nickname'=>'流年']);
@@ -60,14 +54,17 @@ class UserController {
         echo $user['birthday'];
     }
 
-    public function index(){
+    public function index($email=''){
+        //获取指定范围内的所有数据
+            //使用scope语句 后带筛选器的名称,后面带筛选条件
+        $list = User::scope('email',$email)->select();
         //获取所有的表内数据
-        //需要用循环的方式展现页面
-        $list = User::all();
+            //需要用循环的方式展现页面
+        //$list = User::all();
         foreach ($list as $user) {
             echo $user->nickname . '<br/>';
             echo $user->email . '<br/>';
-            echo date('Y/m/d', $user->birthday) . '<br/>';
+            echo $user->birthday . '<br/>';
             echo '----------------------------------<br/>';
         }
     }

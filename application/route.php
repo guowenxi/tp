@@ -33,7 +33,7 @@ return [
     '__pattern__' => [
         'name' => '\w+',
     ],
-    'user/index'      => 'index/user/index',
+    //'user/index'      => 'index/user/index',
     'user/create'     => 'index/user/create',
     'user/add'        => 'index/user/add',
     'user/add_list'   => 'index/user/addList',
